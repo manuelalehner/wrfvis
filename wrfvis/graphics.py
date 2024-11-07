@@ -24,7 +24,7 @@ def plot_topo(topo, lonlat, filepath=None):
     ax.set_xlabel(r'Longitude ($^{\circ}$)')
     ax.set_ylabel(r'Latitude ($^{\circ}$)')
 
-    clevels = np.arange(cfg.topo_min, cfg.topo_max, 200)
+    clevels = np.linspace(cfg.topo_min, cfg.topo_max, 30)
     hc = ax.contourf(topo.XLONG, topo.XLAT, topo.data, levels=clevels, cmap='terrain', 
                      vmin=cfg.topo_min, vmax=cfg.topo_max, extend='both')
     ax.scatter(*lonlat, s=30, c='black', marker='s')

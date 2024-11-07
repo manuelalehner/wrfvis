@@ -52,10 +52,12 @@ def get_wrf_timeseries(param, lon, lat, zagl):
         # extract time series
         if param == 'T':
             # WRF output is perturbation potential temperature
-            vararray = ds[param][np.arange(len(ds.Time)), nlind, ngcind[0], ngcind[1]] + 300
+            vararray = ds[param][np.arange(len(ds.Time)), 
+                                 xr.DataArray(nlind, dims='Time'), *ngcind] + 300
         else:
-            vararray = ds[param][np.arange(len(ds.Time)), nlind, ngcind[0], ngcind[1]]
-        df = vararray[:,0].to_dataframe()
+            vararray = ds[param][np.arange(len(ds.Time)), 
+                                 xr.DataArray(nlind, dims='Time'), *ngcind]
+        df = vararray.to_dataframe()
 
         # add information about the variable
         df.attrs['variable_name'] = param
