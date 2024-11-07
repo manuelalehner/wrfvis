@@ -21,8 +21,8 @@ def plot_topo(topo, lonlat, filepath=None):
 
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_position([0.1, 0.1, 0.75, 0.85])
-    ax.set_xlabel('Longitude ($^{\circ}$)')
-    ax.set_ylabel('Latitude ($^{\circ}$)')
+    ax.set_xlabel(r'Longitude ($^{\circ}$)')
+    ax.set_ylabel(r'Latitude ($^{\circ}$)')
 
     clevels = np.arange(cfg.topo_min, cfg.topo_max, 200)
     hc = ax.contourf(topo.XLONG, topo.XLAT, topo.data, levels=clevels, cmap='terrain', 
@@ -56,7 +56,7 @@ def plot_ts(df, filepath=None):
     ax.set_ylabel(f"{df.attrs['variable_name']} ({df.attrs['variable_units']})")
 
     # title contains information about lon, lat, z agl, and time
-    title = ('WRF time series at location {:.2f}$^{{\circ}}$E/{:.2f}$^{{\circ}}$N, '
+    title = (r'WRF time series at location {:.2f}$^{{\circ}}$E/{:.2f}$^{{\circ}}$N, '
              + 'grid point elevation at time 0: {:.2f} m a.g.l'
              + '\nModel initialization time: {:%d %b %Y, %H%M} UTC')
     plt.title(title.format(df.XLONG[0], df.XLAT[0], 
